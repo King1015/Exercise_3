@@ -32,7 +32,8 @@ top_pos = tag_fd.most_common(5)
 
 # Lemmatization: Lemmatize the top 20 tokens
 lemmatizer = WordNetLemmatizer()
-lemmas = [lemmatizer.lemmatize(word, pos=pos) for (word, pos) in pos_tags[:20]]
+top_20_tokens = [word for word, _ in FreqDist(filtered_tokens).most_common(20)]
+lemmatized_tokens = [lemmatizer.lemmatize(word) for word in top_20_tokens]
 
 # Plotting frequency distribution: Plot a bar chart to visualize the frequency of POS
 tag_fd.plot(cumulative=False)
